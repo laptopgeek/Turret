@@ -1,0 +1,27 @@
+// DESIGNED FOR ARDUINO MEGAN 2560, BUT CAN BE MODIFIED FOR OTHERS
+// JOY X A0
+// SERVO PIN 9
+
+
+#include <Servo.h>
+// Names servo
+Servo tilt; 
+// X axis pin
+int joyX = A0; 
+int x;
+
+void setup()
+{ 
+  
+  tilt.attach(9); // TILT on PIN 9 
+  tilt.write(0); // Resets servo
+} 
+
+void loop()
+{ 
+ tilt.write(0);
+  x = joyX;    // x value btwn 0 and 1023  
+  x = map(analogRead(joyX), 0, 1023, 900, 2100); 
+  tilt.write(x); // Writes x value to servo 
+  delay(15);  // Delays until servo is there
+}
